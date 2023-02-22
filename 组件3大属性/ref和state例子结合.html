@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2_ref</title>
+</head>
+<body>
+        <!-- "container"-->
+        <div id="test"></div>
+
+        <!--import react library-->
+        <script type="text/javascript" src="../JS/react.development.js"></script>
+        <!-- import react dom extend library-->
+        <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+        <!-- import babel for convert jsx to js-->
+        <script src="../JS/babel.min.js"></script>
+
+        <script type="text/babel">
+            class MyEvent extends React.Component {
+                state = {isCold: false}
+
+                showData = () =>{
+                    const {input1} = this
+                    alert(input1.value)
+                }
+ 
+                weatherChange = ()=>{
+                    const {isCold} = this.state
+                    this.setState({isCold: !isCold})
+                }
+
+                render(){
+                    return(
+                        <div>
+                            <h2>今天天气很{this.state.isCold ? '寒冷':'炎热'}</h2>
+                            <input ref={c =>this.input1 = c} type="text" placeholder="点击按钮提示数据"/> &nbsp;
+                            <button onClick={this.showData}>点我提示左侧的数据</button> &nbsp;
+                            <button onClick= {this.weatherChange}>点我改变天气</button>
+                         </div>
+                    )
+                }
+  
+            }
+            
+            ReactDOM.render(<MyEvent/>,document.getElementById('test'))
+
+        </script>
+
+
+
+</body>
+</html>

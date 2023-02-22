@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello_react</title>
+</head>
+<body>
+    
+    <!-- "container"-->
+    <div id="test"></div>
+
+    <!--import react library-->
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <!-- import react dom extend library-->
+    <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+    <!-- import babel for convert jsx to js-->
+    <script src="../JS/babel.min.js"></script>
+
+    <script type="text/babel">
+        //1. 创建类式数式组件
+        class Weather extends React.Component{
+            constructor(props){
+                super(props)
+                this.state = {isHot: true}
+                // 右边的this.changeWeather指的是下面那个changeWeather的函数.
+                // bind 有2种作用. 1)创建一个新函数 2)把第一个参数做为这个函数的this
+                // 我们在括号里的this 是指weather的实例对象.
+                // 这行代码就是让我们函数里的this指向weather的实例对象。（reader函数除外，因为reader是固定写法）
+                this.changeWeather = this.changeWeather.bind(this)
+                
+            }
+            render(){
+                return <h2 onClick ={this.changeWeather}>今天天气很{this.state.isHot ? '炎热':'凉爽'}</h2>
+            }
+
+            changeWeather(){
+                const isHot = this.state.isHot
+                this.setState({isHot: !isHot})
+   
+            }
+        }
+        //2.渲染组件到页面
+        ReactDOM.render(<Weather/>,document.getElementById('test'))
+ 
+     </script>
+</body>
+</html>

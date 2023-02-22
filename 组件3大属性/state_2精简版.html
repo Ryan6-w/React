@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello_react2</title>
+</head>
+<body>
+    
+    <!-- "container"-->
+    <div id="test"></div>
+
+    <!--import react library-->
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <!-- import react dom extend library-->
+    <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+    <!-- import babel for convert jsx to js-->
+    <script src="../JS/babel.min.js"></script>
+
+    <script type="text/babel">
+        //1. 创建类式数式组件
+        class Weather extends React.Component{
+            //初始化状态
+            state = {isHot: true}
+             
+            render(){
+                return <h2 onClick ={this.changeWeather}>今天天气很{this.state.isHot ? '炎热':'凉爽'}</h2>
+            }
+
+            // 自定义方法：用类去创建一个组件的时候，组件里的自定义方法都要写成赋值语句加箭头函数。
+            // 箭头函数本身没有this, 如果用到this 那么是指向父级执行上下文的this；
+            // 也就是说这里的this指向的是weather 实例， 不需要借助bind.
+            changeWeather =  ()=> {
+                const isHot = this.state.isHot
+                this.setState({isHot: !isHot})
+   
+            }
+        }
+        //2.渲染组件到页面
+        ReactDOM.render(<Weather/>,document.getElementById('test'))
+ 
+     </script>
+</body>
+</html>

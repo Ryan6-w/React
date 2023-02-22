@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_类的基本知识</title>
+</head>
+<body>
+    <script>
+        //创建一个person 类
+        class Person{
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+
+            speak(){
+                console.log(`我叫${this.name},我年龄是${this.age}`);
+            }
+        }
+     
+        
+        class Student extends Person{
+            constructor(name, age,grade){
+                super(name,age)
+                this.grade = grade
+            }
+        }
+
+        const s1 = new Student ('小张',14,'高一')
+        console.log(s1)
+ 
+
+        class Car{
+            constructor(name, price){
+                this.name = name
+                this.price = price
+            }
+            wheel = 4
+            static agent2 = "wow"
+        }
+        Car.agent = "ryan"
+        const c1 = new Car ('宝马',199)
+        console.log(c1)
+
+        console.log(Car.prototype)
+ 
+
+    </script>
+    
+</body>
+</html>

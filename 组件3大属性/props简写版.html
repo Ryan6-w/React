@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello_react2</title>
+</head>
+<body>
+    
+    <!-- "container"-->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+
+    <!--import react library-->
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <!-- import react dom extend library-->
+    <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+    <!-- import babel for convert jsx to js-->
+    <script src="../JS/babel.min.js"></script>
+    <!--import prop type 标签属性进行限制-->
+    <script src="../JS/prop-types.js"></script>
+
+    <script type="text/babel">
+        //创建组件
+        class Person extends React.Component{
+
+            static propTypes = {
+            name:PropTypes.string.isRequired,
+            sex:PropTypes.string,
+            age:PropTypes.number,
+            }   
+
+            static defaultProps = {
+                sex: 'N/A',
+                age: 22
+            }
+            render(){
+                //存储成object，方便下面拿数据
+                const{name,age,sex} = this.props
+                return (
+                    <ul>
+                        <li>名字: {name}</li>
+                        <li>性别: {sex}</li>
+                        <li>年龄: {age+1} </li>
+                    </ul>
+                )
+            }
+        }
+
+
+
+        const p = {name:'Mandy',age: 18,sex: 'F'}
+
+        ReactDOM.render(<Person name="Ryan"/>,document.getElementById('test1'))
+        ReactDOM.render(<Person name="Cherry" age ={18} sex ="F"/>,document.getElementById('test2'))
+        ReactDOM.render(<Person {...p}/>,document.getElementById('test3'))
+     </script>
+</body>
+</html>
