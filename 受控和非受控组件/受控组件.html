@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>受控组件</title>
+</head>
+<body>
+     <!-- "container"-->
+     <div id="test"></div>
+
+     <!--import react library-->
+     <script type="text/javascript" src="../JS/react.development.js"></script>
+     <!-- import react dom extend library-->
+     <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+     <!-- import babel for convert jsx to js-->
+     <script src="../JS/babel.min.js"></script>
+
+     <script type="text/babel">
+        class Login extends React.Component{
+            
+            //在login 每个实例都初始化state 的值
+            state = {
+                username: '',
+                password: ''
+            }
+            
+            //有事件(onChange)发生就可以传event形参;我们把每次用户输入的值实时存储到state里
+            //把用户名存储到state里
+            saveUsername = (event)=>{
+                this.setState({username:event.target.value})
+            }
+            //把密码存储到state里
+            savePassword = (event)=>{
+                this.setState({password:event.target.value})
+            }
+
+            //表格提交的回调
+            handleSubmit = (event) =>{
+                event.preventDefault()// 阻止表格提交
+                //之前是this（因为ref的值是直接给类自身添加了属性，所以只需要访问类本身来获取）
+                // 现在是this.state (是每个实例都有state,从当前实例的state获取用户名和密码);
+                const {username,password} = this.state 
+                alert(`你的用户名是：${username}, 你的密码是： ${password}`)
+            }
+            render(){
+                return(
+                    <form onSubmit = {this.handleSubmit}>
+                        用户名： <input onChange = {this.saveUsername} type="text" name= "username"/>
+                        密码： <input  onChange = {this.savePassword}  type="password" name = "password" />
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+
+    </script>
+</body>
+</html>

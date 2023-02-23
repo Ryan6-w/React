@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum(a,b,c){
+            return a+b+c
+        }
+
+        const result = sum(1,2,3)
+        console.log(result);
+
+        //函数的柯里化
+        function sum2(x){
+            return (y) =>{
+                return (z) => {
+                    return x+y+z
+                }
+            }
+        }
+
+        const result2 = sum2(1)(2)(3)
+        console.log(result2)
+
+        function sum3(x1){
+            return function(y1){
+                return function(z1){
+                    return x1+y1+z1
+                }
+            }
+        }
+        const result3 = sum3(1)(2)(3)
+        console.log(result3)
+
+    </script>
+    
+</body>
+</html>

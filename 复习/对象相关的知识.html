@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a ='name'
+        let obj1 = {} // 要求是{name: 'tom'}
+        
+        // 这个是当你知道 变量a 的值是什么。 但是如果变量a的值是传递过来的怎么办
+        obj1.name = 'tom'
+        console.log(obj1) // 结果：{name: 'tom'}
+
+
+        let b ='name'
+        let obj2 = {} // 要求是{name: 'tom'}
+
+        obj2.b = 'tom'
+        console.log(obj2) // 结果：{b: 'tom'}
+
+        let c ='name'
+        let obj3 = {} // 要求是{name: 'tom'}
+
+        obj3[c] = 'tom'
+        console.log(obj3) // 结果：{name: 'tom'}
+
+
+    </script>
+    
+</body>
+</html>

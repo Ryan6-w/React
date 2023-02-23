@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>高阶函数_函数柯里化</title>
+</head>
+<body>
+     <!-- "container"-->
+     <div id="test"></div>
+
+     <!--import react library-->
+     <script type="text/javascript" src="../JS/react.development.js"></script>
+     <!-- import react dom extend library-->
+     <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+     <!-- import babel for convert jsx to js-->
+     <script src="../JS/babel.min.js"></script>
+
+     <script type="text/babel">
+        class Login extends React.Component{
+            
+            //在login 每个实例都初始化state 的值
+            state = {
+                username: '',
+                password: ''
+            }
+            
+            //这个dataType是SaveData传过来的形参
+            saveDate = (dataType)=>{
+                //因为当我们事件等于一个函数且函数后面带括号，会把函数调用的返回值交给事件作为一个回调 
+                //下面的例子就是这样，所以当事件触发，这个return 里的函数就会做为回调被执行
+                return (event) =>{
+                    this.setState({[dataType]: event.target.value})
+                }
+            }
+      
+
+            //表格提交的回调
+            handleSubmit = (event) =>{
+                event.preventDefault()// 阻止表格提交
+                const {username,password} = this.state 
+                alert(`你的用户名是：${username}, 你的密码是： ${password}`)
+            }
+            render(){
+                return(
+                    <form onSubmit = {this.handleSubmit}>
+                        用户名： <input onChange = {this.saveDate('username')} type="text" name= "username"/>
+                        密码： <input  onChange = {this.saveDate('password')}  type="password" name = "password" />
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+
+    </script>
+</body>
+</html>

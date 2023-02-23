@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- "container"-->
+    <div id="test"></div>
+
+    <!--import react library-->
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <!-- import react dom extend library-->
+    <script type= "text/javascript"src="../JS/react-dom.development.js"></script>
+    <!-- import babel for convert jsx to js-->
+    <script src="../JS/babel.min.js"></script>
+
+    <script type="text/babel">
+        class LifeCycle extends React.Component{
+
+            death = ()=>{
+                //卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+
+            render(){
+                return (
+                    <div>
+                        <h2>React 学不会怎么办？</h2>
+                        <button onClick={this.death}> 不活了</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<LifeCycle/>,document.getElementById('test'))
+   </script>
+</body>
+</html>
